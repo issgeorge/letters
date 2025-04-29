@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Letter for You</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f2efe3;
+      font-family: 'Dancing Script', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      perspective: 1500px;
+    }
+
+    .envelope {
+      width: 600px;
+      height: 400px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      cursor: pointer;
+    }
+
+    .envelope.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-size: cover;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .front {
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAIOCAIAAACppeieAAEAAElEQVR4nIz9ebBla3YXiK21vmlPZ7rnTjm/fPmmml9Vqaqk0oRA...');
+    }
+
+    .back {
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABH4AAALxCAIAAACl4fZ5AAEAAElEQVR4nHT92Y5tW5IdiM1+tbv35rT3xo2MJDPZiFIWqx74AYL0...');
+      transform: rotateY(180deg);
+    }
+
+    .letter {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 600px;
+      height: 400px;
+      background: #fffaf0;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 30px;
+      font-size: 22px;
+      line-height: 1.6;
+      z-index: 2;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .show-letter .letter {
+      display: block;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="envelope" id="envelope">
+      <div class="front"></div>
+      <div class="back"></div>
+      <div class="letter" id="letter">
+        <p>Dear Friend,</p>
+        <p>
+          Wishing you joy, success, and all the best in your journey ahead.
+          May every step you take bring you closer to your dreams.
+        </p>
+        <p>Warm regards,<br/>Ignatius Stanis Santosh</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('flipped');
+      setTimeout(() => {
+        envelope.classList.add('show-letter');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
